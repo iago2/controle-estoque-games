@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v10.0": {
-      "CalculadoraEmC#/1.0.0": {
+      "EstoqueGames/1.0.0": {
         "runtime": {
-          "CalculadoraEmC#.dll": {}
+          "EstoqueGames.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "CalculadoraEmC#/1.0.0": {
+    "EstoqueGames/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
