@@ -12,15 +12,6 @@ namespace ControleEstoqueGames
 
         static List<Jogos> joguinhos = new List<Jogos>();
 
-
-
-
-
-
-
-
-
-
         static void Main(string[] args)
         {
 
@@ -69,27 +60,31 @@ namespace ControleEstoqueGames
 
             // Informações sobre o Jogo
             System.Console.Write("Digite qual o Nome do Jogo que deseja cadastrar: ");
-            string nome = Console.ReadLine();
+            string nome = Console.ReadLine()!;
             System.Console.Write("Digite qual o Preço do Jogo que deseja cadastrar: ");
-            decimal preco = decimal.Parse(Console.ReadLine());
+            decimal preco = decimal.Parse(Console.ReadLine()!);
             System.Console.Write("Digite qual a Distribuidora do Jogo que deseja cadastrar: ");
-            string distribuidora = Console.ReadLine();
+            string distribuidora = Console.ReadLine()!;
             System.Console.Write("Digite qual o Ano de Lançamento do Jogo que deseja cadastrar: ");
-            int anoLancamento = int.Parse(Console.ReadLine());
+            int anoLancamento = int.Parse(Console.ReadLine()!);
             System.Console.Write("Digite qual o Gênero do Jogo que deseja cadastrar: ");
-            string genero = Console.ReadLine();
+            string genero = Console.ReadLine()!;
             System.Console.Write("Digite qual o Console do Jogo que deseja cadastrar: ");
-            string console = Console.ReadLine();
+            string console = Console.ReadLine()!;
             System.Console.Write("Digite qual a Quantidade em Estoque do Jogo que deseja cadastrar: ");
-            int quantidadeEstoque = int.Parse(Console.ReadLine());
+            int quantidadeEstoque = int.Parse(Console.ReadLine()!);
 
             Jogos novojogo = new(nome, preco, distribuidora, genero, anoLancamento, console, quantidadeEstoque);
             joguinhos.Add(novojogo);
+
+            Console.Clear();
 
             System.Console.WriteLine("Cadastrando Jogo em Nosso Sistema....");
             Thread.Sleep(2000);
             System.Console.WriteLine("Jogo Cadastrado com Sucesso!!");
             Thread.Sleep(1000);
+
+
         }
 
         public static void ListarJogos(List<Jogos> joguinhos)
@@ -97,18 +92,15 @@ namespace ControleEstoqueGames
             Console.Clear();
             System.Console.WriteLine("***** Listagem de Jogos *****");
             System.Console.WriteLine("-----------------------------------------");
-            System.Console.WriteLine("Jogos Cadastrados abaixo");
-            System.Console.WriteLine("-----------------------------------------");
-            foreach (Jogos j in joguinhos)
-            {
-                while (true)
-                {
-                    System.Console.WriteLine($" • {j.nome}");
-                }
 
+            for (int i = 0; i < joguinhos.Count; i++)
+            {
+                System.Console.WriteLine($"{i + 1}.{joguinhos[i].nome}");
             }
-            System.Console.WriteLine("Digite para sair:");
+
+            System.Console.Write("Digite qualquer tecla para retornar ao Menu");
             Console.ReadKey();
+
 
         }
 
@@ -120,10 +112,6 @@ namespace ControleEstoqueGames
             Thread.Sleep(1000);
             System.Environment.Exit(0);
         }
-
-
-
-
 
     }
 }
