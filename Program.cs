@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Runtime;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -12,6 +13,7 @@ namespace ControleEstoqueGames
 
         static List<Jogos> joguinhos = new List<Jogos>();
 
+
         static void Main(string[] args)
         {
 
@@ -20,6 +22,8 @@ namespace ControleEstoqueGames
             {
                 Menu();
             }
+
+
 
 
 
@@ -98,8 +102,54 @@ namespace ControleEstoqueGames
                 System.Console.WriteLine($"{i + 1}.{joguinhos[i].nome}");
             }
 
-            System.Console.Write("Digite qualquer tecla para retornar ao Menu");
-            Console.ReadKey();
+            System.Console.WriteLine("Deseja ver mais detalhes de um Jogo? ( S = Sim ou N = Não)");
+            System.Console.Write("Responda = ");
+            string detalhesJogo = Console.ReadLine()!.ToLower();
+
+
+            if (detalhesJogo == "s")
+            {
+                Console.Write("Digite o Número do Jogo que deseja ver: ");
+                int decisaoDetalhes = int.Parse(Console.ReadLine()!);
+
+                int indice = decisaoDetalhes - 1;
+
+                if (indice >= 0 && indice < joguinhos.Count)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Buscando Detalhes do Jogo......");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine($"Detalhes do Jogo Abaixo");
+                    System.Console.WriteLine("-----------------------------------------");
+                    joguinhos[indice].Apresentar();
+
+                    System.Console.WriteLine("\nDigite qualquer tecla para retornar ao Menu");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("Erro, Digite um núemro válido na lista");
+                    Console.ReadKey();
+                }
+
+
+
+
+            }
+
+
+            else if (detalhesJogo == "n")
+            {
+                Console.WriteLine("Já que não deseja ver detalhes vamos retornar ao Menu!!");
+                Thread.Sleep(1000);
+                Console.Clear();
+                Console.WriteLine("Retornando ao Menu.......");
+                Thread.Sleep(1000);
+
+            }
+
+
 
 
         }
