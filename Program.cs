@@ -35,7 +35,8 @@ namespace ControleEstoqueGames
                 System.Console.WriteLine("-----------------------------------------");
                 System.Console.WriteLine(" 1 - Cadastrar Jogo ");
                 System.Console.WriteLine(" 2 - Listar Jogos");
-                System.Console.WriteLine(" 3 - Sair");
+                System.Console.WriteLine(" 3 - Deletar Jogo");
+                System.Console.WriteLine(" 0 - Sair");
                 System.Console.WriteLine("-----------------------------------------");
 
                 System.Console.Write("Digite a opção que deseja: ");
@@ -45,10 +46,12 @@ namespace ControleEstoqueGames
                 {
                     case 1: CadastroJogo(joguinhos); break;
                     case 2: ListarJogos(joguinhos); break;
-                    case 3: Sair(); break;
+                    case 3: DeletarJogos(joguinhos); break;
+                    case 0: Sair(); break;
                     default:
                         {
                             System.Console.WriteLine("Opção Invalida");
+                            Console.ReadKey();
                             break;
                         }
                 }
@@ -129,7 +132,7 @@ namespace ControleEstoqueGames
                 }
                 else
                 {
-                    Console.WriteLine("Erro, Digite um núemro válido na lista");
+                    Console.WriteLine("Erro, Digite um número válido na lista");
                     Console.ReadKey();
                 }
 
@@ -152,6 +155,78 @@ namespace ControleEstoqueGames
 
 
 
+        }
+
+        public static void DeletarJogos(List<Jogos> joguinhos)
+        {
+            Console.Clear();
+            System.Console.WriteLine("**** Deletando Jogo ****");
+            System.Console.WriteLine("-----------------------------------------");
+
+
+            for (int i = 0; i < joguinhos.Count; i++)
+            {
+                System.Console.WriteLine($"{i + 1}. {joguinhos[i].nome} (Estoque: {joguinhos[i].quantidadeEstoque})");
+            }
+
+
+            Console.Write("\nDigite o número do jogo: ");
+            bool sucesso = int.TryParse(Console.ReadLine(), out int decisaoDeletar);
+
+            if (!sucesso)
+            {
+                Console.WriteLine("Entrada inválida!");
+                Console.ReadKey();
+                return;
+            }
+
+            int indice = decisaoDeletar - 1;
+
+
+            if (indice < 0 || indice >= joguinhos.Count)
+            {
+                Console.WriteLine("Erro: número inválido!");
+                Console.ReadKey();
+                return;
+            }
+
+            Jogos jogoSelecionado = joguinhos[indice];
+
+
+            Console.WriteLine($"\nDeseja remover 1 unidade de: {jogoSelecionado.nome}? (S/N)");
+            string resposta = Console.ReadLine()!.ToLower();
+
+            if (resposta == "s")
+            {
+
+                if (jogoSelecionado.quantidadeEstoque > 0)
+                {
+                    jogoSelecionado.quantidadeEstoque--;
+
+                    Console.WriteLine("\nBaixando estoque...");
+                    Thread.Sleep(1000);
+
+                    Console.WriteLine($"Estoque restante: {jogoSelecionado.quantidadeEstoque}");
+
+
+                    if (jogoSelecionado.quantidadeEstoque == 0)
+                    {
+                        joguinhos.RemoveAt(indice);
+                        Console.WriteLine("Jogo removido do sistema (estoque zerado).");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Este jogo já está sem estoque.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Operação cancelada.");
+            }
+
+            Console.WriteLine("\nPressione qualquer tecla para voltar...");
+            Console.ReadKey();
         }
 
         public static void Sair()

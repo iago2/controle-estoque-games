@@ -31,6 +31,8 @@ public class Jogos
         System.Console.WriteLine($"Console: {console}");
         System.Console.WriteLine($"Quantidade em Estoque: {quantidadeEstoque}");
     }
+
+
 }
 
 
