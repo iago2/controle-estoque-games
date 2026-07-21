@@ -23,13 +23,13 @@ public class Jogos
 
     public void Apresentar()
     {
-        Console.WriteLine($"Nome do Jogo: {nome}"!);
-        System.Console.WriteLine($"Preço do Jogo: R$ {preco:f2}");
-        System.Console.WriteLine($"Distribuidora: {distribuidora}");
-        System.Console.WriteLine($"Gênero: {genero}");
-        System.Console.WriteLine($"Ano de Lançamento: {anoLancamento}");
-        System.Console.WriteLine($"Console: {console}");
-        System.Console.WriteLine($"Quantidade em Estoque: {quantidadeEstoque}");
+        Console.WriteLine($"1.Nome do Jogo: {nome}"!);
+        System.Console.WriteLine($"2.Preço do Jogo: R$ {preco:f2}");
+        System.Console.WriteLine($"3.Distribuidora: {distribuidora}");
+        System.Console.WriteLine($"4.Gênero: {genero}");
+        System.Console.WriteLine($"5.Ano de Lançamento: {anoLancamento}");
+        System.Console.WriteLine($"6.Console: {console}");
+        System.Console.WriteLine($"7.Quantidade em Estoque: {quantidadeEstoque}");
     }
 
 

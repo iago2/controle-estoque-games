@@ -36,6 +36,7 @@ namespace ControleEstoqueGames
                 System.Console.WriteLine(" 1 - Cadastrar Jogo ");
                 System.Console.WriteLine(" 2 - Listar Jogos");
                 System.Console.WriteLine(" 3 - Deletar Jogo");
+                System.Console.WriteLine(" 4 - Atualizar Jogo");
                 System.Console.WriteLine(" 0 - Sair");
                 System.Console.WriteLine("-----------------------------------------");
 
@@ -47,6 +48,7 @@ namespace ControleEstoqueGames
                     case 1: CadastroJogo(joguinhos); break;
                     case 2: ListarJogos(joguinhos); break;
                     case 3: DeletarJogos(joguinhos); break;
+                    case 4: AtualizarJogos(joguinhos); break;
                     case 0: Sair(); break;
                     default:
                         {
@@ -66,6 +68,7 @@ namespace ControleEstoqueGames
             System.Console.WriteLine("-----------------------------------------");
 
             // Informações sobre o Jogo
+
             System.Console.Write("Digite qual o Nome do Jogo que deseja cadastrar: ");
             string nome = Console.ReadLine()!;
             System.Console.Write("Digite qual o Preço do Jogo que deseja cadastrar: ");
@@ -226,6 +229,296 @@ namespace ControleEstoqueGames
             }
 
             Console.WriteLine("\nPressione qualquer tecla para voltar...");
+            Console.ReadKey();
+        }
+
+        public static void AtualizarJogos(List<Jogos> joguinhos)
+        {
+            Console.Clear();
+            System.Console.WriteLine("**** Atualizando Jogo ****");
+            System.Console.WriteLine("-----------------------------------------");
+
+            for (int i = 0; i < joguinhos.Count; i++)
+            {
+                System.Console.WriteLine($"{i + 1}. {joguinhos[i].nome}");
+
+            }
+
+            System.Console.Write("Digite o número do Jogo que deseja Atualizar:");
+            int decisaoAtualizar = Convert.ToInt32(Console.ReadLine());
+
+            int indice = decisaoAtualizar - 1;
+            Jogos atualizarSelecionado = joguinhos[indice];
+
+            Console.Clear();
+            atualizarSelecionado.Apresentar();
+
+
+            System.Console.WriteLine("\nDeseja Atualizar qual elemento do Jogo? Digite o Número ");
+            System.Console.Write("Digite:");
+            int atualizarEscolhido = Convert.ToInt32(Console.ReadLine()!.ToLower());
+
+            switch (atualizarEscolhido)
+            {
+                case 1:
+                    {
+                        Console.Clear();
+                        System.Console.WriteLine("**** Atualizando Nome ****");
+                        System.Console.WriteLine("-----------------------------------------");
+                        Console.Clear();
+                        System.Console.WriteLine($"Nome atual: {joguinhos[indice].nome}");
+                        System.Console.Write("Novo Nome:");
+                        string novoNome = Console.ReadLine()!;
+                        System.Console.WriteLine($"Confirma Atualizar o Preço para {novoNome}? S ou N");
+                        System.Console.Write("R= ");
+                        string confirma = Console.ReadLine()!.ToLower();
+                        if (confirma == "s")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualizando Nome.....");
+                            Thread.Sleep(2000);
+                            joguinhos[indice].nome = novoNome;
+                            System.Console.WriteLine("Nome Atualizado com Sucesso!!");
+                        }
+                        else if (confirma == "n")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualização Cancelada. Voltando ao Menu.....");
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Digite uma opção Válida!");
+                            System.Console.WriteLine("Confirma essa Atualização? S ou N");
+                            System.Console.Write("R= ");
+                            confirma = Console.ReadLine()!.ToLower();
+                        }
+                        break;
+
+
+                    }
+                case 2:
+                    {
+                        Console.Clear();
+                        System.Console.WriteLine("**** Atualizando Preço ****");
+                        System.Console.WriteLine("-----------------------------------------");
+                        Console.Clear();
+                        System.Console.WriteLine($"Preço atual: {joguinhos[indice].preco}");
+                        System.Console.Write("Novo Preço:");
+                        int novoPreco = Convert.ToInt32(Console.ReadLine()!);
+                        System.Console.WriteLine($"Confirma Atualizar o Preço para R${novoPreco:f2}? S ou N");
+                        System.Console.Write("R=");
+                        string confirma = Console.ReadLine()!.ToLower();
+                        if (confirma == "s")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualizando Preço.....");
+                            Thread.Sleep(2000);
+                            joguinhos[indice].preco = novoPreco;
+                            System.Console.WriteLine("Preço Atualizado com Sucesso!!");
+
+                        }
+                        else if (confirma == "n")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualização Cancelada. Voltando ao Menu.....");
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Digite uma opção Válida!");
+                            System.Console.WriteLine("Confirma essa Atualização? S ou N");
+                            System.Console.Write("R= ");
+                            confirma = Console.ReadLine()!.ToLower();
+                        }
+                        break;
+                    }
+                case 3:
+                    {
+                        Console.Clear();
+                        System.Console.WriteLine("**** Atualizando Distribuidora ****");
+                        System.Console.WriteLine("-----------------------------------------");
+                        Console.Clear();
+                        System.Console.WriteLine($"Distribuidora atual: {joguinhos[indice].distribuidora}");
+                        System.Console.Write("Nova Distribuidora:");
+                        string novaDistribuidora = Console.ReadLine()!;
+                        System.Console.WriteLine($"Confirma Atualizar a Distribuidora para {novaDistribuidora}? S ou N");
+                        System.Console.Write("R= ");
+                        string confirma = Console.ReadLine()!.ToLower();
+                        if (confirma == "s")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualizando Distribuidora.....");
+                            Thread.Sleep(2000);
+                            joguinhos[indice].distribuidora = novaDistribuidora;
+                            System.Console.WriteLine("Distribuidora Atualizada com Sucesso!!");
+
+                        }
+                        else if (confirma == "n")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualização Cancelada. Voltando ao Menu.....");
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Digite uma opção Válida!");
+                            System.Console.WriteLine("Confirma essa Atualização? S ou N");
+                            System.Console.Write("R= ");
+                            confirma = Console.ReadLine()!.ToLower();
+                        }
+                        break;
+                    }
+                case 4:
+                    {
+                        Console.Clear();
+                        System.Console.WriteLine("**** Atualizando Ano Lançamento ****");
+                        System.Console.WriteLine("-----------------------------------------");
+                        Console.Clear();
+                        System.Console.WriteLine($"Ano Lançamento: {joguinhos[indice].anoLancamento}");
+                        System.Console.Write("Novo Ano Lançamento:");
+                        int novoAnolancamento = Convert.ToInt32(Console.ReadLine()!);
+                        System.Console.WriteLine($"\nConfirma Atualizar o Ano de Lançamento para {novoAnolancamento}? S ou N");
+                        System.Console.Write("R= ");
+                        string confirma = Console.ReadLine()!.ToLower();
+                        if (confirma == "s")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualizando Preço.....");
+                            Thread.Sleep(2000);
+                            joguinhos[indice].anoLancamento = novoAnolancamento;
+                            System.Console.WriteLine("Ano Lançamento Atualizado com Sucesso!!");
+
+                        }
+                        else if (confirma == "n")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualização Cancelada. Voltando ao Menu.....");
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Digite uma opção Válida!");
+                            System.Console.WriteLine("Confirma essa Atualização? S ou N");
+                            System.Console.Write("R= ");
+                            confirma = Console.ReadLine()!.ToLower();
+                        }
+                        break;
+                    }
+                case 5:
+                    {
+                        Console.Clear();
+                        System.Console.WriteLine("**** Atualizando Gênero ****");
+                        System.Console.WriteLine("-----------------------------------------");
+                        Console.Clear();
+                        System.Console.WriteLine($"Gênero atual: {joguinhos[indice].genero}");
+                        System.Console.Write("Novo Gênero:");
+                        string novoGenero = Console.ReadLine()!;
+                        System.Console.WriteLine($"\nConfirma Atualizar o Gênero para {novoGenero}? S ou N");
+                        System.Console.Write("R= ");
+                        string confirma = Console.ReadLine()!.ToLower();
+                        if (confirma == "s")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualizando Preço.....");
+                            Thread.Sleep(2000);
+                            joguinhos[indice].genero = novoGenero;
+                            System.Console.WriteLine("Genêro Atualizado com Sucesso!!");
+
+                        }
+                        else if (confirma == "n")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualização Cancelada. Voltando ao Menu.....");
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Digite uma opção Válida!");
+                            System.Console.WriteLine("Confirma essa Atualização? S ou N");
+                            System.Console.Write("R= ");
+                            confirma = Console.ReadLine()!.ToLower();
+                        }
+                        break;
+                    }
+                case 6:
+                    {
+                        Console.Clear();
+                        System.Console.WriteLine("**** Atualizando Console ****");
+                        System.Console.WriteLine("-----------------------------------------");
+                        Console.Clear();
+                        System.Console.WriteLine($"Console atual: {joguinhos[indice].console}");
+                        System.Console.Write("Novo Console:");
+                        string novoConsole = Console.ReadLine()!;
+                        System.Console.WriteLine($"\nConfirma Atualizar o Console para {novoConsole}? S ou N");
+                        System.Console.Write("R= ");
+                        string confirma = Console.ReadLine()!.ToLower();
+                        if (confirma == "s")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualizando Console.....");
+                            Thread.Sleep(2000);
+                            joguinhos[indice].console = novoConsole;
+                            System.Console.WriteLine("Console Atualizado com Sucesso!!");
+
+                        }
+                        else if (confirma == "n")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualização Cancelada. Voltando ao Menu.....");
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Digite uma opção Válida!");
+                            System.Console.WriteLine("Confirma essa Atualização? S ou N");
+                            System.Console.Write("R= ");
+                            confirma = Console.ReadLine()!.ToLower();
+                        }
+                        break;
+                    }
+                case 7:
+                    {
+                        Console.Clear();
+                        System.Console.WriteLine("**** Atualizando Estoque ****");
+                        System.Console.WriteLine("-----------------------------------------");
+                        Console.Clear();
+                        System.Console.WriteLine($"Estoque atual: {joguinhos[indice].quantidadeEstoque}");
+                        System.Console.Write("Novo Estoque:");
+                        int novoEstoque = Convert.ToInt32(Console.ReadLine()!);
+                        System.Console.WriteLine($"\nConfirma Atualizar o Estoque para {novoEstoque}? S ou N");
+                        System.Console.Write("R= ");
+                        string confirma = Console.ReadLine()!.ToLower();
+                        if (confirma == "s")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualizando Estoque.....");
+                            Thread.Sleep(2000);
+                            joguinhos[indice].quantidadeEstoque = novoEstoque;
+                            System.Console.WriteLine("Estoque Atualizado com Sucesso!!");
+
+                        }
+                        else if (confirma == "n")
+                        {
+                            Console.Clear();
+                            System.Console.WriteLine("Atualização Cancelada. Voltando ao Menu.....");
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Digite uma opção Válida!");
+                            System.Console.WriteLine("Confirma essa Atualização? S ou N");
+                            System.Console.Write("R= ");
+                            confirma = Console.ReadLine()!.ToLower();
+                        }
+                        break;
+                    }
+
+            }
+
+
+
+
             Console.ReadKey();
         }
 
