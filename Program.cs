@@ -85,24 +85,13 @@ namespace ControleEstoqueGames
             while (!nome)
             {
 
-                System.Console.Write("Digite qual o Nome do Jogo que deseja cadastrar 1: ");
+                System.Console.Write("Digite qual o Nome do Jogo que deseja cadastrar: ");
                 nomeValidado = Console.ReadLine()!;
 
                 if (string.IsNullOrWhiteSpace(nomeValidado))
                 {
-                    while (string.IsNullOrWhiteSpace(nomeValidado))
-                    {
-                        System.Console.WriteLine("Erro, Digite um Nome!");
-                        System.Console.Write("Digite qual o Nome do Jogo que deseja cadastrar:");
-                        nomeValidado = Console.ReadLine()!;
 
-
-
-                    }
-                    if (!string.IsNullOrWhiteSpace(nomeValidado))
-                    {
-                        nome = true;
-                    }
+                    System.Console.WriteLine("Erro, Digite um Nome!");
 
                 }
                 else
@@ -130,8 +119,33 @@ namespace ControleEstoqueGames
                 }
             }
 
-            System.Console.Write("Digite qual a Distribuidora do Jogo que deseja cadastrar: ");
-            string distribuidora = Console.ReadLine()!;
+            // Validação da Distribuidora
+
+
+            bool distribuidora = false;
+            string distribuidoraValidado = "";
+
+            while (!distribuidora)
+            {
+                System.Console.Write("Digite qual a Distribuidora do Jogo que deseja cadastrar: ");
+                distribuidoraValidado = Console.ReadLine()!;
+
+                if (string.IsNullOrWhiteSpace(distribuidoraValidado))
+                {
+                    System.Console.WriteLine("Erro: digite o nome da Distribuidora!");
+                }
+                else
+                {
+                    distribuidora = true;
+                }
+
+
+            }
+
+
+
+
+
 
             // Validação Ano de Lançamento
             bool anoLancamento = false;
@@ -150,10 +164,46 @@ namespace ControleEstoqueGames
                 }
             }
 
-            System.Console.Write("Digite qual o Gênero do Jogo que deseja cadastrar: ");
-            string genero = Console.ReadLine()!;
-            System.Console.Write("Digite qual o Console do Jogo que deseja cadastrar: ");
-            string console = Console.ReadLine()!;
+
+            // Validação Gênero
+            bool genero = false;
+            string generoValidado = "";
+
+            while (!genero)
+            {
+                System.Console.Write("Digite qual o Gênero do Jogo que deseja cadastrar: ");
+                generoValidado = Console.ReadLine()!;
+
+                if (string.IsNullOrWhiteSpace(generoValidado))
+                {
+                    System.Console.WriteLine("Erro: Digite o Gênero do Jogo");
+                }
+                else
+                {
+                    genero = true;
+                }
+            }
+
+
+            // Validação Console
+            bool console = false;
+            string consoleValidado = "";
+
+            while (!console)
+            {
+                System.Console.Write("Digite qual o Console do Jogo que deseja cadastrar: ");
+                consoleValidado = Console.ReadLine()!;
+
+                if (string.IsNullOrWhiteSpace(consoleValidado))
+                {
+                    System.Console.WriteLine("Erro: Digite o Nome do Console!");
+                }
+                else
+                {
+                    console = true;
+                }
+            }
+
 
             // Validação Quantidade de Estoque
             bool quantidadeEstoque = false;
@@ -172,7 +222,7 @@ namespace ControleEstoqueGames
                 }
             }
 
-            Jogos novojogo = new(nomeValidado, precoValidado, distribuidora, genero, anoLancamentoValidado, console, quantidadeEstoqueValidado);
+            Jogos novojogo = new(nomeValidado, precoValidado, distribuidoraValidado, generoValidado, anoLancamentoValidado, consoleValidado, quantidadeEstoqueValidado);
             joguinhos.Add(novojogo);
 
             Console.Clear();
