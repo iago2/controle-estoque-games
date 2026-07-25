@@ -40,10 +40,18 @@ namespace ControleEstoqueGames
                 System.Console.WriteLine(" 0 - Sair");
                 System.Console.WriteLine("-----------------------------------------");
 
+                // Validação Menu
                 System.Console.Write("Digite a opção que deseja: ");
-                int decisao = int.Parse(Console.ReadLine()!);
+                bool decisao = int.TryParse(Console.ReadLine()!, out int decisaoValidada);
 
-                switch (decisao)
+                if (!decisao)
+                {
+                    Console.WriteLine("Opção Invalida!");
+                    Console.ReadKey();
+                    return;
+                }
+
+                switch (decisaoValidada)
                 {
                     case 1: CadastroJogo(joguinhos); break;
                     case 2: ListarJogos(joguinhos); break;
@@ -52,7 +60,7 @@ namespace ControleEstoqueGames
                     case 0: Sair(); break;
                     default:
                         {
-                            System.Console.WriteLine("Opção Invalida");
+                            System.Console.WriteLine("Opção inexistente! Escolha um número de 0 a 4.");
                             Console.ReadKey();
                             break;
                         }
@@ -69,22 +77,102 @@ namespace ControleEstoqueGames
 
             // Informações sobre o Jogo
 
-            System.Console.Write("Digite qual o Nome do Jogo que deseja cadastrar: ");
-            string nome = Console.ReadLine()!;
-            System.Console.Write("Digite qual o Preço do Jogo que deseja cadastrar: ");
-            decimal preco = decimal.Parse(Console.ReadLine()!);
+            bool nome = false;
+            string nomeValidado = "";
+
+            //Validação Nome do Jogo
+
+            while (!nome)
+            {
+
+                System.Console.Write("Digite qual o Nome do Jogo que deseja cadastrar 1: ");
+                nomeValidado = Console.ReadLine()!;
+
+                if (string.IsNullOrWhiteSpace(nomeValidado))
+                {
+                    while (string.IsNullOrWhiteSpace(nomeValidado))
+                    {
+                        System.Console.WriteLine("Erro, Digite um Nome!");
+                        System.Console.Write("Digite qual o Nome do Jogo que deseja cadastrar:");
+                        nomeValidado = Console.ReadLine()!;
+
+
+
+                    }
+                    if (!string.IsNullOrWhiteSpace(nomeValidado))
+                    {
+                        nome = true;
+                    }
+
+                }
+                else
+                {
+                    nome = true;
+                }
+
+            }
+
+
+
+            // Validação Preço do Jogo
+            bool preco = false;
+            decimal precoValidado = 0;
+            while (!preco)
+            {
+                System.Console.Write("Digite qual o Preço do Jogo que deseja cadastrar: ");
+                preco = decimal.TryParse(Console.ReadLine()!, out precoValidado);
+
+                if (!preco)
+                {
+                    Console.WriteLine("Opção Inválida! Digite um valor numérico.");
+                    Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
+                    Console.ReadKey();
+                }
+            }
+
             System.Console.Write("Digite qual a Distribuidora do Jogo que deseja cadastrar: ");
             string distribuidora = Console.ReadLine()!;
-            System.Console.Write("Digite qual o Ano de Lançamento do Jogo que deseja cadastrar: ");
-            int anoLancamento = int.Parse(Console.ReadLine()!);
+
+            // Validação Ano de Lançamento
+            bool anoLancamento = false;
+            int anoLancamentoValidado = 0;
+
+            while (!anoLancamento)
+            {
+                System.Console.Write("Digite qual o Ano de Lançamento do Jogo que deseja cadastrar: ");
+                anoLancamento = int.TryParse(Console.ReadLine()!, out anoLancamentoValidado);
+
+                if (!anoLancamento)
+                {
+                    Console.WriteLine("Opção Inválida! Digite um valor numérico.");
+                    Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
+                    Console.ReadKey();
+                }
+            }
+
             System.Console.Write("Digite qual o Gênero do Jogo que deseja cadastrar: ");
             string genero = Console.ReadLine()!;
             System.Console.Write("Digite qual o Console do Jogo que deseja cadastrar: ");
             string console = Console.ReadLine()!;
-            System.Console.Write("Digite qual a Quantidade em Estoque do Jogo que deseja cadastrar: ");
-            int quantidadeEstoque = int.Parse(Console.ReadLine()!);
 
-            Jogos novojogo = new(nome, preco, distribuidora, genero, anoLancamento, console, quantidadeEstoque);
+            // Validação Quantidade de Estoque
+            bool quantidadeEstoque = false;
+            int quantidadeEstoqueValidado = 0;
+
+            while (!quantidadeEstoque)
+            {
+                System.Console.Write("Digite qual o Estoque do Jogo que deseja cadastrar: ");
+                quantidadeEstoque = int.TryParse(Console.ReadLine()!, out quantidadeEstoqueValidado);
+
+                if (!quantidadeEstoque)
+                {
+                    Console.WriteLine("Opção Inválida! Digite um valor numérico.");
+                    Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
+                    Console.ReadKey();
+                }
+            }
+
+            Jogos novojogo = new(nomeValidado, precoValidado, distribuidora, genero, anoLancamentoValidado, console, quantidadeEstoqueValidado);
             joguinhos.Add(novojogo);
 
             Console.Clear();
@@ -110,8 +198,15 @@ namespace ControleEstoqueGames
 
             System.Console.WriteLine("Deseja ver mais detalhes de um Jogo? ( S = Sim ou N = Não)");
             System.Console.Write("Responda = ");
-            string detalhesJogo = Console.ReadLine()!.ToLower();
+            string detalhesJogo = (Console.ReadLine()!.ToLower());
 
+
+            if (detalhesJogo != "s" && detalhesJogo != "n")
+            {
+                System.Console.WriteLine("Val!");
+                Console.ReadKey();
+                return;
+            }
 
             if (detalhesJogo == "s")
             {
@@ -157,7 +252,7 @@ namespace ControleEstoqueGames
 
 
 
-
+            Console.ReadKey();
         }
 
         public static void DeletarJogos(List<Jogos> joguinhos)
