@@ -106,17 +106,31 @@ namespace ControleEstoqueGames
             // Validação Preço do Jogo
             bool preco = false;
             decimal precoValidado = 0;
+
             while (!preco)
             {
                 System.Console.Write("Digite qual o Preço do Jogo que deseja cadastrar: ");
                 preco = decimal.TryParse(Console.ReadLine()!, out precoValidado);
 
-                if (!preco)
+                if (preco == true && precoValidado < 0)
+                {
+                    Console.WriteLine("Opção Inválida! Não Aceitamos Números Negativos.");
+                    Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
+                    Console.ReadKey();
+                    preco = false;
+
+
+                }
+                else if (!preco)
                 {
                     Console.WriteLine("Opção Inválida! Digite um valor numérico.");
                     Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
                     Console.ReadKey();
+
+
+
                 }
+
             }
 
             // Validação da Distribuidora
@@ -153,10 +167,19 @@ namespace ControleEstoqueGames
 
             while (!anoLancamento)
             {
+
+
                 System.Console.Write("Digite qual o Ano de Lançamento do Jogo que deseja cadastrar: ");
                 anoLancamento = int.TryParse(Console.ReadLine()!, out anoLancamentoValidado);
 
-                if (!anoLancamento)
+                if (anoLancamento && anoLancamentoValidado < 0)
+                {
+                    Console.WriteLine("Opção Inválida! Não Aceitamos Números Negativos.");
+                    Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
+                    Console.ReadKey();
+                    anoLancamento = false;
+                }
+                else if (!anoLancamento)
                 {
                     Console.WriteLine("Opção Inválida! Digite um valor numérico.");
                     Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
@@ -214,7 +237,14 @@ namespace ControleEstoqueGames
                 System.Console.Write("Digite qual o Estoque do Jogo que deseja cadastrar: ");
                 quantidadeEstoque = int.TryParse(Console.ReadLine()!, out quantidadeEstoqueValidado);
 
-                if (!quantidadeEstoque)
+                if (quantidadeEstoque && quantidadeEstoqueValidado < 0)
+                {
+                    Console.WriteLine("Opção Inválida! Não Aceitamos Números Negativos.");
+                    Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
+                    Console.ReadKey();
+                    preco = false;
+                }
+                else if (!quantidadeEstoque)
                 {
                     Console.WriteLine("Opção Inválida! Digite um valor numérico.");
                     Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
