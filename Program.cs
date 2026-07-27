@@ -46,7 +46,7 @@ namespace ControleEstoqueGames
 
                 if (!decisao)
                 {
-                    Console.WriteLine("Opção Invalida!");
+                    Console.WriteLine("Opção Inválida! Digite apenas Números");
                     Console.ReadKey();
                     return;
                 }
@@ -91,7 +91,7 @@ namespace ControleEstoqueGames
                 if (string.IsNullOrWhiteSpace(nomeValidado))
                 {
 
-                    System.Console.WriteLine("Erro, Digite um Nome!");
+                    System.Console.WriteLine("Erro: informe o nome do jogo!");
 
                 }
                 else
@@ -114,7 +114,7 @@ namespace ControleEstoqueGames
 
                 if (preco == true && precoValidado < 0)
                 {
-                    Console.WriteLine("Opção Inválida! Não Aceitamos Números Negativos.");
+                    Console.WriteLine("Erro: não são permitidos números negativos!");
                     Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
                     Console.ReadKey();
                     preco = false;
@@ -123,7 +123,7 @@ namespace ControleEstoqueGames
                 }
                 else if (!preco)
                 {
-                    Console.WriteLine("Opção Inválida! Digite um valor numérico.");
+                    Console.WriteLine("Erro: informe um preço válido!");
                     Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
                     Console.ReadKey();
 
@@ -146,7 +146,7 @@ namespace ControleEstoqueGames
 
                 if (string.IsNullOrWhiteSpace(distribuidoraValidado))
                 {
-                    System.Console.WriteLine("Erro: digite o nome da Distribuidora!");
+                    System.Console.WriteLine("Erro: informe a distribuidora do jogo!");
                 }
                 else
                 {
@@ -155,11 +155,6 @@ namespace ControleEstoqueGames
 
 
             }
-
-
-
-
-
 
             // Validação Ano de Lançamento
             bool anoLancamento = false;
@@ -172,16 +167,16 @@ namespace ControleEstoqueGames
                 System.Console.Write("Digite qual o Ano de Lançamento do Jogo que deseja cadastrar: ");
                 anoLancamento = int.TryParse(Console.ReadLine()!, out anoLancamentoValidado);
 
-                if (anoLancamento && anoLancamentoValidado < 0)
+                if (anoLancamento == true && anoLancamentoValidado < 0)
                 {
-                    Console.WriteLine("Opção Inválida! Não Aceitamos Números Negativos.");
+                    Console.WriteLine("Erro: não são permitidos números negativos!");
                     Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
                     Console.ReadKey();
                     anoLancamento = false;
                 }
                 else if (!anoLancamento)
                 {
-                    Console.WriteLine("Opção Inválida! Digite um valor numérico.");
+                    Console.WriteLine("Erro: informe um ano de lançamento válido!");
                     Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
                     Console.ReadKey();
                 }
@@ -199,7 +194,7 @@ namespace ControleEstoqueGames
 
                 if (string.IsNullOrWhiteSpace(generoValidado))
                 {
-                    System.Console.WriteLine("Erro: Digite o Gênero do Jogo");
+                    System.Console.WriteLine("Erro: informe o gênero do jogo!");
                 }
                 else
                 {
@@ -219,7 +214,7 @@ namespace ControleEstoqueGames
 
                 if (string.IsNullOrWhiteSpace(consoleValidado))
                 {
-                    System.Console.WriteLine("Erro: Digite o Nome do Console!");
+                    System.Console.WriteLine("Erro: informe o console do jogo!");
                 }
                 else
                 {
@@ -237,16 +232,16 @@ namespace ControleEstoqueGames
                 System.Console.Write("Digite qual o Estoque do Jogo que deseja cadastrar: ");
                 quantidadeEstoque = int.TryParse(Console.ReadLine()!, out quantidadeEstoqueValidado);
 
-                if (quantidadeEstoque && quantidadeEstoqueValidado < 0)
+                if (quantidadeEstoque == true && quantidadeEstoqueValidado < 0)
                 {
-                    Console.WriteLine("Opção Inválida! Não Aceitamos Números Negativos.");
+                    Console.WriteLine("Erro: não são permitidos números negativos!");
                     Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
                     Console.ReadKey();
-                    preco = false;
+                    quantidadeEstoque = false;
                 }
                 else if (!quantidadeEstoque)
                 {
-                    Console.WriteLine("Opção Inválida! Digite um valor numérico.");
+                    Console.WriteLine("Erro: informe uma quantidade em estoque válida!");
                     Console.WriteLine("Pressione qualquer tecla para tentar novamente...\n");
                     Console.ReadKey();
                 }
@@ -257,9 +252,9 @@ namespace ControleEstoqueGames
 
             Console.Clear();
 
-            System.Console.WriteLine("Cadastrando Jogo em Nosso Sistema....");
+            System.Console.WriteLine("Cadastrando Jogo no Sistema....");
             Thread.Sleep(2000);
-            System.Console.WriteLine("Jogo Cadastrado com Sucesso!!");
+            System.Console.WriteLine("Jogo Cadastrado com Sucesso!");
             Thread.Sleep(1000);
 
 
