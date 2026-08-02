@@ -271,64 +271,102 @@ namespace ControleEstoqueGames
                 System.Console.WriteLine($"{i + 1}.{joguinhos[i].nome}");
             }
 
-            System.Console.WriteLine("Deseja ver mais detalhes de um Jogo? ( S = Sim ou N = Não)");
-            System.Console.Write("Responda = ");
-            string detalhesJogo = (Console.ReadLine()!.ToLower());
-
-
-            if (detalhesJogo != "s" && detalhesJogo != "n")
+            if (joguinhos.Count == 0)
             {
-                System.Console.WriteLine("Val!");
+                System.Console.WriteLine("Nenhum jogo cadastrado.");
+                System.Console.WriteLine("Digite qualquer tecla para retornar ao Menu e Cadastrar um Jogo");
                 Console.ReadKey();
-                return;
             }
-
-            if (detalhesJogo == "s")
+            else
             {
-                Console.Write("Digite o Número do Jogo que deseja ver: ");
-                int decisaoDetalhes = int.Parse(Console.ReadLine()!);
+                // Validação DetalhesJogo
+                string detalhesJogoValidado = "";
+                bool detalhesJogo = false;
 
-                int indice = decisaoDetalhes - 1;
-
-                if (indice >= 0 && indice < joguinhos.Count)
+                while (!detalhesJogo)
                 {
-                    Console.Clear();
-                    Console.WriteLine("Buscando Detalhes do Jogo......");
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    Console.WriteLine($"Detalhes do Jogo Abaixo");
-                    System.Console.WriteLine("-----------------------------------------");
-                    joguinhos[indice].Apresentar();
+                    System.Console.WriteLine("Deseja ver mais detalhes de um Jogo? ( S = Sim ou N = Não)");
+                    System.Console.Write("Responda = ");
+                    detalhesJogoValidado = (Console.ReadLine()!.ToLower());
 
-                    System.Console.WriteLine("\nDigite qualquer tecla para retornar ao Menu");
-                    Console.ReadKey();
-                }
-                else
-                {
-                    Console.WriteLine("Erro, Digite um número válido na lista");
-                    Console.ReadKey();
+                    if (detalhesJogoValidado != "s" && detalhesJogoValidado != "n")
+                    {
+                        System.Console.WriteLine("Erro: Digite uma Opção Válida!");
+
+
+                    }
+                    else
+                    {
+                        detalhesJogo = true;
+                    }
                 }
 
+                // Saida do While
+
+                bool decisaoDetalhes = false;
+                int decisaodetalhesValidado = 0;
+
+                while (!decisaoDetalhes)
+                {
+                    if (detalhesJogoValidado == "s")
+                    {
+                        Console.Write("Digite o Número do Jogo que deseja ver: ");
+                        decisaoDetalhes = int.TryParse(Console.ReadLine()!, out decisaodetalhesValidado);
+
+                        int indice = decisaodetalhesValidado - 1;
 
 
+                        if (indice >= 0 && indice < joguinhos.Count)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Buscando Detalhes do Jogo......");
+                            Thread.Sleep(1000);
+                            Console.Clear();
+                            Console.WriteLine($"Detalhes do Jogo Abaixo");
+                            System.Console.WriteLine("-----------------------------------------");
+                            joguinhos[indice].Apresentar();
+
+                            System.Console.WriteLine("\nDigite qualquer tecla para retornar ao Menu");
+                            decisaoDetalhes = true;
+                            Console.ReadKey();
+
+                        }
+                        else if (decisaoDetalhes == true)
+                        {
+                            Console.WriteLine("Erro: jogo não encontrado. Escolha um número da lista.");
+                            decisaoDetalhes = false;
+                            System.Console.WriteLine("Pressione qualquer tecla para tentar novamente...");
+                            Console.ReadKey();
+
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Erro: informe apenas números.");
+                            decisaoDetalhes = false;
+                            System.Console.WriteLine("Pressione qualquer tecla para tentar novamente...");
+                            Console.ReadKey();
+                        }
+
+                    }
+                    else if (detalhesJogoValidado == "n")
+                    {
+                        Console.WriteLine("Já que não deseja ver detalhes vamos retornar ao Menu!!");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        Console.WriteLine("Retornando ao Menu.......");
+                        Thread.Sleep(1000);
+                        decisaoDetalhes = true;
+
+                    }
+
+                }
 
             }
 
-
-            else if (detalhesJogo == "n")
-            {
-                Console.WriteLine("Já que não deseja ver detalhes vamos retornar ao Menu!!");
-                Thread.Sleep(1000);
-                Console.Clear();
-                Console.WriteLine("Retornando ao Menu.......");
-                Thread.Sleep(1000);
-
-            }
-
-
-
-            Console.ReadKey();
         }
+
+
 
         public static void DeletarJogos(List<Jogos> joguinhos)
         {
